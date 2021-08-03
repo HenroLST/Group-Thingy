@@ -4,19 +4,24 @@ var pos=0;
 const sleep = (time) => {
     return new Promise(resolve => setTimeout(resolve, time))
   }
-  var shoot = async function(){
-    bull.style.visibility="visible"
-    bull.style.left=el.offsetLeft+"px"
-    bull.style.top=el.offsetTop+"px"
-    
-    for(var i=el.offsetTop;i>-100;i-=10){
+  var shoot =  function(){
+   document.addEventListener("keyup",async function(event){
+        if(event.keyCode==32){
+            console.log("bruh")
+            bull.style.visibility="visible"
+            bull.style.left=el.offsetLeft+"px"
+            bull.style.top=el.offsetTop+"px"
 
-        bull.style.top=i+"px"
+            for(var i=el.offsetTop;i>-100;i-=10){
 
-        await sleep()
-    
+                bull.style.top=i+"px"
+
+                await sleep()
+        
+        }
     }
-}
+} );
+  }
   var tickRate = 30,
   keyDown = {},
   keyMap = {
@@ -37,12 +42,7 @@ var move =  async function(){
     if(keyDown['right']){
         el.style.left=el.offsetLeft+10+'px'
     }
-    if(keyDown['space']){
-
-        shoot()
-        
-
-    }
+    shoot()
     setTimeout(move, tickRate);
 
 };
