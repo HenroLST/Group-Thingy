@@ -1,0 +1,15 @@
+body {
+    background-color: black;
+}
+
+#shooter{
+    top:80%;
+    left:50%;
+    position:absolute
+}
+#bullet{
+    top:80%;
+    left:50%;
+    position:absolute;
+    visibility: hidden;
+} 
