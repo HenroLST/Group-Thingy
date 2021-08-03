@@ -13,3 +13,15 @@ body {
     position:absolute;
     visibility: hidden;
 } 
+
+.small {
+    height:60px;
+    width:75px;
+    border-style:solid;
+    border-color:white;
+    border-width: 2px;
+}
+
+.float {
+    float:right
+}
