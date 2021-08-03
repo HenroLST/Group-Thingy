@@ -29,4 +29,14 @@ document.addEventListener("keydown",async function(event){
         }
 
     }
+    var topenemynumb = document.getElementById("topenemies");
+    var middleenemynumb = document.getElementById("middleenemies");
+    var bottomnemynumb = document.getElementById("bottomenemies");
+
+if (topenemynumb == 2){
+    topenemynumb++;
+}
+
+
+
 }); 
