@@ -1,0 +1,17 @@
+body {
+    background-image:url(https://images.nymag.com/images/2/daily/2010/08/20100826_ironsky_560x375.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.center {
+    padding-top: 250px;
+    padding-bottom: 300px;
+
+}
+
+.jumbotron {
+    text-align: center;
+    opacity: .75;
+}
