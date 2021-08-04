@@ -38,3 +38,27 @@ var move =  async function(){
     setTimeout(move, tickRate);
 };
 move();
+
+
+function findPos(obj){
+    var curleft = 0;
+    var curtop = 0;    
+    if (obj.offsetParent) {
+  do {
+      curleft += obj.offsetLeft;
+      curtop += obj.offsetTop;
+     } while (obj = obj.offsetParent);
+  return {X:curleft,Y:curtop};
+   }
+}
+//Top Row//
+var res =  findPos(document.getElementById('top1'));
+  alert("The x-cordinate is "+res.X);
+  alert("The y-cordinate is "+res.Y);
+var res =  findPos(document.getElementById('top2'));
+  alert("The x-cordinate is "+res.X);
+  alert("The y-cordinate is "+res.Y);
+//Middle Row//
+var res =  findPos(document.getElementById('middle1'));
+  alert("The x-cordinate is "+res.X);
+  alert("The y-cordinate is "+res.Y);

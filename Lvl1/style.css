@@ -25,3 +25,10 @@ body {
 .float {
     float:right
 }
+
+.footer {
+    bottom: 0px;
+    position: fixed;
+    border-top-color: white;
+    opacity: 0;
+}
