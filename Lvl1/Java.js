@@ -1,3 +1,4 @@
+
 var el=document.getElementById("shooter");
 var bull=document.getElementById("bullet");
 var pos=0;
@@ -71,25 +72,26 @@ var move =  async function(){
 move();
 
 
-function findPos(obj){
-    var curleft = 0;
-    var curtop = 0;    
-    if (obj.offsetParent) {
-  do {
-      curleft += obj.offsetLeft;
-      curtop += obj.offsetTop;
-     } while (obj = obj.offsetParent);
-  return {X:curleft,Y:curtop};
-   }
-}
+
+
+//function findPos(obj){
+    //var curleft = 0;
+    //var curtop = 0;    
+    //if (obj.offsetParent) {
+  //do {
+      //curleft += obj.offsetLeft;
+      //curtop += obj.offsetTop;
+     //} while (obj = obj.offsetParent);
+  //return {X:curleft,Y:curtop};
+   //}
+//}
 //Top Row//
-var res =  findPos(document.getElementById('top1'));
-  alert("The x-cordinate is "+res.X);
-  alert("The y-cordinate is "+res.Y);
-var res =  findPos(document.getElementById('top2'));
-  alert("The x-cordinate is "+res.X);
-  alert("The y-cordinate is "+res.Y);
-//Middle Row//
-var res =  findPos(document.getElementById('middle1'));
-  alert("The x-cordinate is "+res.X);
-  alert("The y-cordinate is "+res.Y);
+//var resC1R1 =  findPos(document.getElementById('C1R1'));
+    //console.log(resC1R1)
+
+//var resC2R1 =  findPos(document.getElementById('C2R1'));
+    //console.log(resC2R1)
+
+//var resC1R2 =  findPos(document.getElementById('C1R2'));
+    //console.log(C1R2)
+    

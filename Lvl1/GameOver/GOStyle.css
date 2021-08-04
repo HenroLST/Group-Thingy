@@ -12,6 +12,7 @@ body {
 }
 
 .jumbotron {
-    text-align: center;
+    border: 0.08em solid black;
     opacity: .75;
+    text-align: center;
 }
