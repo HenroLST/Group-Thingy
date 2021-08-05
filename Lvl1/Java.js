@@ -94,4 +94,3 @@ move();
 
 //var resC1R2 =  findPos(document.getElementById('C1R2'));
     //console.log(C1R2)
-    
