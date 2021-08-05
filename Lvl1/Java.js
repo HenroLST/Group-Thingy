@@ -1,34 +1,105 @@
 
 var el=document.getElementById("shooter");
 var bull=document.getElementById("bullet");
+
 var pos=0;
+
+var enemyArray=[
+document.getElementById("C1R1"),
+document.getElementById("C2R1"),
+document.getElementById("C3R1"),
+document.getElementById("C4R1"),
+document.getElementById("C5R1"),
+document.getElementById("C6R1"),
+document.getElementById("C7R1"),
+document.getElementById("C8R1"),
+document.getElementById("C9R1"),
+document.getElementById("C10R1"),
+document.getElementById("C11R1"),
+document.getElementById("C12R1"),
+
+document.getElementById("C1R2"),
+document.getElementById("C2R2"),
+document.getElementById("C3R2"),
+document.getElementById("C4R2"),
+document.getElementById("C5R2"),
+document.getElementById("C6R2"),
+document.getElementById("C7R2"),
+document.getElementById("C8R2"),
+document.getElementById("C9R2"),
+document.getElementById("C10R2"),
+document.getElementById("C11R2"),
+document.getElementById("C12R2"),
+
+document.getElementById("C1R3"),
+document.getElementById("C2R3"),
+document.getElementById("C3R3"),
+document.getElementById("C4R3"),
+document.getElementById("C5R3"),
+document.getElementById("C6R3"),
+document.getElementById("C7R3"),
+document.getElementById("C8R3"),
+document.getElementById("C9R3"),
+document.getElementById("C10R3"),
+document.getElementById("C11R3"),
+document.getElementById("C12R3"),
+
+]
 const sleep = (time) => {
     return new Promise(resolve => setTimeout(resolve, time))
   }
- 
+ function collide(a,b){
+     var arect=a.getBoundingClientRect()
+    var brect= b.getBoundingClientRect()
+    
+     if (arect.left<brect.right&&arect.right>brect.left&&arect.top<brect.bottom&&arect.bottom>brect.top){
+        return(true)
+     }
+     else{
+        return(false)
+     }
+     
+     
+ }
   document.addEventListener("keyup",async function(event){
+    
       if(bull.offsetTop==el.offsetTop){
-          console.log(bull.offsetTop)
-
+     
+        
         if(event.keyCode==32){
             
             
             bull.style.visibility="visible"
             bull.style.left=el.offsetLeft+"px"
- 
+            loop1:  
             for(var i=el.offsetTop;i>-100;i-=10){
-
+                console.log(bull.offsetTop)
                 bull.style.top=i+"px"
                 await sleep()
-            
+                loop2:
+                for(var j=0;j<enemyArray.length;j++){
+                    if(collide(bull,enemyArray[j])==true){
+                        enemyArray[j].style.display="none"
+                        bull.style.visibility="hidden"
+                        break loop1
+                       
+                        
+                    }
+                
+                }
+           
+                
+                
             }
+           
+                
+        }
                                 
             
             bull.style.visibility="hidden"
             bull.style.top=el.offsetTop+"px"  
             
-        }
-      }
+    }
 });
 
   var tickRate = 30,
@@ -41,7 +112,8 @@ const sleep = (time) => {
 document.addEventListener("keydown",function(e){keyDown[keyMap[e.which]]=true;})
 document.addEventListener("keyup",function(e){keyDown[keyMap[e.which]]=false;})
 var move =  async function(){
-   
+
+    
     if((el.offsetLeft>4&&el.offsetLeft<1720)){
         
         if(keyDown['left']){
@@ -94,3 +166,4 @@ move();
 
 //var resC1R2 =  findPos(document.getElementById('C1R2'));
     //console.log(C1R2)
+    
