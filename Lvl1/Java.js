@@ -73,7 +73,6 @@ const sleep = (time) => {
             bull.style.left=el.offsetLeft+"px"
             loop1:  
             for(var i=el.offsetTop;i>-100;i-=10){
-                console.log(bull.offsetTop)
                 bull.style.top=i+"px"
                 await sleep()
                 loop2:
@@ -144,8 +143,6 @@ var move =  async function(){
 move();
 
 
-
-
 //function findPos(obj){
     //var curleft = 0;
     //var curtop = 0;    
@@ -166,4 +163,73 @@ move();
 
 //var resC1R2 =  findPos(document.getElementById('C1R2'));
     //console.log(C1R2)
-    
+
+function collide(a,b){
+    var arect= a.getBoundingClientRect()
+    var brect= b.getBoundingClientRect()
+    if (arect.left<brect.right&&arect.right>brect.left&&arect.top<brect.bottom&&arect.bottom>brect.top){
+        return(true)
+    }
+    else{
+        return(false)
+    }
+}
+
+if (collide(document.getElementById("C1R1"), document.getElementById("footer"))) {
+    alert("game over")
+}
+
+
+//Moving enemies down
+function MoveDown() {
+    var i=0;
+    function step() {
+       document.getElementById("topenemies").style.top=i+"px";
+       i=i+0.25;
+       if (i<=600) setTimeout(step,10);
+    }
+    step();
+}
+MoveDown();
+function MoveDown2() {
+    var i=0;
+    function step() {
+       document.getElementById("midenemies").style.top=i+"px";
+       i=i+0.25;
+       if (i<=500) setTimeout(step,10);
+    }
+    step();
+}
+MoveDown2()
+function MoveDown3() {
+    var i=0;
+    function step() {
+       document.getElementById("botenemies").style.top=i+"px";
+       i=i+0.25;
+       if (i<=400) setTimeout(step,10);
+    }
+    step();
+}
+MoveDown3()
+//Moving enemies left and right
+function MoveLeft() {
+    var i=0;
+    function step() {
+       document.getElementById("topenemies").style.right=i+"px";
+       i=i+0.5;
+       if (i<=200) setTimeout(step,10);
+    }
+    step();
+}
+MoveLeft()
+function MoveRight() {
+    var i=0;
+    function step() {
+       document.getElementById("midenemies").style.left=i+"px";
+       i=i+0.5;
+       if (i<=200) setTimeout(step,10);
+    }
+    step();
+}
+MoveRight()
+
