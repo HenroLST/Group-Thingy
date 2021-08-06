@@ -1,8 +1,15 @@
 
 var el=document.getElementById("shooter");
 var bull=document.getElementById("bullet");
-
+var bull2=document.getElementById("bullet2")
 var pos=0;
+var ScoreCount=0;
+var lives=3;
+var enemyTimer=0;
+
+var don1=document.getElementById("donut1")
+var don2=document.getElementById("donut2")
+var don3=document.getElementById("donut3")
 
 var enemyArray=[
 document.getElementById("C1R1"),
@@ -48,6 +55,7 @@ document.getElementById("C12R3"),
 const sleep = (time) => {
     return new Promise(resolve => setTimeout(resolve, time))
   }
+  //collide function
  function collide(a,b){
      var arect=a.getBoundingClientRect()
     var brect= b.getBoundingClientRect()
@@ -61,6 +69,39 @@ const sleep = (time) => {
      
      
  }
+    //enemy bullets
+ async function enemyShoot(){
+    if(enemyTimer>=30){
+        enemyTimer=0;
+        var randomEnemy=enemyArray[Math.floor(Math.random()*enemyArray.length)];
+        if(randomEnemy.style.display!="none"){
+           
+        
+            var enrect=randomEnemy.getBoundingClientRect();
+            bull2.style.left=enrect.left+"px"
+            
+            for(var i=enrect.top;i<el.offsetTop;i+=3){
+                enrect=randomEnemy.getBoundingClientRect();
+                
+                bull2.style.visibility="visible";
+                
+                bull2.style.top=i+"px"
+                await sleep()
+                if(collide(bull2,el)){
+                    lives-=1;
+                    console.log(lives)
+                    break
+                }
+            }
+            bull2.style.visibility="hidden"
+        }
+        else{
+            
+        }
+        
+    }
+ }
+ //bullet shooting
   document.addEventListener("keyup",async function(event){
     
       if(bull.offsetTop==el.offsetTop){
@@ -80,6 +121,8 @@ const sleep = (time) => {
                     if(collide(bull,enemyArray[j])==true){
                         enemyArray[j].style.display="none"
                         bull.style.visibility="hidden"
+                        ScoreCount+=10;
+                        document.getElementById("score").innerHTML="Score: "+ScoreCount;
                         break loop1
                        
                         
@@ -111,8 +154,11 @@ const sleep = (time) => {
 document.addEventListener("keydown",function(e){keyDown[keyMap[e.which]]=true;})
 document.addEventListener("keyup",function(e){keyDown[keyMap[e.which]]=false;})
 var move =  async function(){
+    enemyTimer++
 
+    enemyShoot()
     
+    //wasd movement
     if((el.offsetLeft>4&&el.offsetLeft<1720)){
         
         if(keyDown['left']){
@@ -136,48 +182,36 @@ var move =  async function(){
         }
     
     }
-
-
+    //score
+    if(ScoreCount>=360){
+        window.location.href="Win/Win.html"   
+    }
+    //lives
+    if(lives==2){
+        don3.style.visibility="hidden"
+    }
+    if(lives==1){
+        don2.style.visibility="hidden"
+    }
+   
+    //death screen
     setTimeout(move, tickRate);
+    var botrect= document.getElementById("botenemies").getBoundingClientRect()
+    if(botrect.bottom>=775){
+       
+        window.location.href="GameOver/GameOver.html"   
+    }
+    if(lives<=0){
+        don1.style.visibility="hidden"
+        window.location.href="GameOver/GameOver.html"   
+    }
+    
 };
 move();
 
 
-//function findPos(obj){
-    //var curleft = 0;
-    //var curtop = 0;    
-    //if (obj.offsetParent) {
-  //do {
-      //curleft += obj.offsetLeft;
-      //curtop += obj.offsetTop;
-     //} while (obj = obj.offsetParent);
-  //return {X:curleft,Y:curtop};
-   //}
-//}
-//Top Row//
-//var resC1R1 =  findPos(document.getElementById('C1R1'));
-    //console.log(resC1R1)
 
-//var resC2R1 =  findPos(document.getElementById('C2R1'));
-    //console.log(resC2R1)
 
-//var resC1R2 =  findPos(document.getElementById('C1R2'));
-    //console.log(C1R2)
-
-function collide(a,b){
-    var arect= a.getBoundingClientRect()
-    var brect= b.getBoundingClientRect()
-    if (arect.left<brect.right&&arect.right>brect.left&&arect.top<brect.bottom&&arect.bottom>brect.top){
-        return(true)
-    }
-    else{
-        return(false)
-    }
-}
-
-if (collide(document.getElementById("C1R1"), document.getElementById("footer"))) {
-    alert("game over")
-}
 
 
 //Moving enemies down
@@ -186,8 +220,9 @@ function MoveDown() {
     function step() {
        document.getElementById("topenemies").style.top=i+"px";
        i=i+0.25;
-       if (i<=600) setTimeout(step,10);
+      setTimeout(step,10);
     }
+
     step();
 }
 MoveDown();
@@ -196,7 +231,7 @@ function MoveDown2() {
     function step() {
        document.getElementById("midenemies").style.top=i+"px";
        i=i+0.25;
-       if (i<=500) setTimeout(step,10);
+       setTimeout(step,10);
     }
     step();
 }
@@ -205,8 +240,8 @@ function MoveDown3() {
     var i=0;
     function step() {
        document.getElementById("botenemies").style.top=i+"px";
-       i=i+0.25;
-       if (i<=400) setTimeout(step,10);
+       i=i+.25;
+        setTimeout(step,10);
     }
     step();
 }
@@ -214,20 +249,44 @@ MoveDown3()
 //Moving enemies left and right
 function MoveLeft() {
     var i=0;
+    var j=200;
     function step() {
        document.getElementById("topenemies").style.right=i+"px";
        i=i+0.5;
        if (i<=200) setTimeout(step,10);
+       if (i>200) {setTimeout(step2,10);j=200}
+       
+    }
+    function step2(){
+        
+        document.getElementById("topenemies").style.right=j+"px";
+        
+       j=j-0.5;
+       if (j>=-200) setTimeout(step2,10);
+       if (j<-200) {setTimeout(step,10);i=-200;}
+       
     }
     step();
 }
 MoveLeft()
 function MoveRight() {
     var i=0;
+    var j=200;
     function step() {
-       document.getElementById("midenemies").style.left=i+"px";
-       i=i+0.5;
-       if (i<=200) setTimeout(step,10);
+       document.getElementById("midenemies").style.right=i+"px";
+       i=i-0.5;
+       if (i>=-200) setTimeout(step,10);
+       if (i<-200) {setTimeout(step2,10);j=-200}
+      
+    }
+    function step2(){
+        
+        document.getElementById("midenemies").style.right=j+"px";
+        
+       j=j+0.5;
+       if (j<=200) setTimeout(step2,10);
+       if (j>200) {setTimeout(step,10);i=200;}
+     
     }
     step();
 }
