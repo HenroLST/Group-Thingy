@@ -1,4 +1,3 @@
-
 var el=document.getElementById("shooter");
 var bull=document.getElementById("bullet");
 var bull2=document.getElementById("bullet2")
@@ -71,7 +70,7 @@ const sleep = (time) => {
  }
     //enemy bullets
  async function enemyShoot(){
-    if(enemyTimer>=30){
+    if(enemyTimer>=45){
         enemyTimer=0;
         var randomEnemy=enemyArray[Math.floor(Math.random()*enemyArray.length)];
         if(randomEnemy.style.display!="none"){
@@ -210,16 +209,12 @@ var move =  async function(){
 move();
 
 
-
-
-
-
 //Moving enemies down
 function MoveDown() {
     var i=0;
     function step() {
        document.getElementById("topenemies").style.top=i+"px";
-       i=i+0.25;
+       i=i+0.15;
       setTimeout(step,10);
     }
 
@@ -230,7 +225,7 @@ function MoveDown2() {
     var i=0;
     function step() {
        document.getElementById("midenemies").style.top=i+"px";
-       i=i+0.25;
+       i=i+0.15;
        setTimeout(step,10);
     }
     step();
@@ -240,7 +235,7 @@ function MoveDown3() {
     var i=0;
     function step() {
        document.getElementById("botenemies").style.top=i+"px";
-       i=i+.25;
+       i=i+.15;
         setTimeout(step,10);
     }
     step();
@@ -252,7 +247,7 @@ function MoveLeft() {
     var j=200;
     function step() {
        document.getElementById("topenemies").style.right=i+"px";
-       i=i+0.5;
+       i=i+0.15;
        if (i<=200) setTimeout(step,10);
        if (i>200) {setTimeout(step2,10);j=200}
        
@@ -274,7 +269,7 @@ function MoveRight() {
     var j=200;
     function step() {
        document.getElementById("midenemies").style.right=i+"px";
-       i=i-0.5;
+       i=i-0.15;
        if (i>=-200) setTimeout(step,10);
        if (i<-200) {setTimeout(step2,10);j=-200}
       
@@ -291,4 +286,3 @@ function MoveRight() {
     step();
 }
 MoveRight()
-
