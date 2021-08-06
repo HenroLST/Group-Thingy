@@ -214,75 +214,88 @@ function MoveDown() {
     var i=0;
     function step() {
        document.getElementById("topenemies").style.top=i+"px";
-       i=i+0.15;
+       i=i+0.10;
       setTimeout(step,10);
     }
+    step();
+    function step1() {
+        document.getElementById("midenemies").style.top=i+"px";
+        i=i+0.10;
+        setTimeout(step1,10);
+    }
+    step1();
+    function step2() {
+        document.getElementById("botenemies").style.top=i+"px";
+        i=i+.10;
+         setTimeout(step2,10);
+    }
+    step2();
+}
+MoveDown()
 
-    step();
-}
-MoveDown();
-function MoveDown2() {
-    var i=0;
-    function step() {
-       document.getElementById("midenemies").style.top=i+"px";
-       i=i+0.15;
-       setTimeout(step,10);
-    }
-    step();
-}
-MoveDown2()
-function MoveDown3() {
-    var i=0;
-    function step() {
-       document.getElementById("botenemies").style.top=i+"px";
-       i=i+.15;
-        setTimeout(step,10);
-    }
-    step();
-}
-MoveDown3()
-//Moving enemies left and right
 function MoveLeft() {
     var i=0;
-    var j=200;
+    var j=100;
     function step() {
        document.getElementById("topenemies").style.right=i+"px";
-       i=i+0.15;
-       if (i<=200) setTimeout(step,10);
-       if (i>200) {setTimeout(step2,10);j=200}
+       i=i+2;
+       if (i<=100) setTimeout(step,10);
+       if (i>100) {setTimeout(step2,10);j=100}
        
     }
     function step2(){
         
         document.getElementById("topenemies").style.right=j+"px";
         
-       j=j-0.5;
-       if (j>=-200) setTimeout(step2,10);
-       if (j<-200) {setTimeout(step,10);i=-200;}
+       j=j-2;
+       if (j>=-100) setTimeout(step2,10);
+       if (j<-100) {setTimeout(step,10);i=-100;}
        
     }
     step();
 }
 MoveLeft()
-function MoveRight() {
+function MoveLeft2() {
     var i=0;
-    var j=200;
+    var j=100;
     function step() {
        document.getElementById("midenemies").style.right=i+"px";
-       i=i-0.15;
-       if (i>=-200) setTimeout(step,10);
-       if (i<-200) {setTimeout(step2,10);j=-200}
-      
+       i=i+2;
+       if (i<=100) setTimeout(step,10);
+       if (i>100) {setTimeout(step2,10);j=100}
+       
     }
     function step2(){
         
         document.getElementById("midenemies").style.right=j+"px";
         
-       j=j+0.5;
-       if (j<=200) setTimeout(step2,10);
-       if (j>200) {setTimeout(step,10);i=200;}
-     
+       j=j-2;
+       if (j>=-100) setTimeout(step2,10);
+       if (j<-100) {setTimeout(step,10);i=-100;}
+       
     }
     step();
 }
-MoveRight()
+MoveLeft2()
+function MoveLeft3() {
+    var i=0;
+    var j=100;
+    function step() {
+       document.getElementById("botenemies").style.right=i+"px";
+       i=i+2;
+       if (i<=100) setTimeout(step,10);
+       if (i>100) {setTimeout(step2,10);j=100}
+       
+    }
+    function step2(){
+        
+        document.getElementById("botenemies").style.right=j+"px";
+        
+       j=j-2;
+       if (j>=-100) setTimeout(step2,10);
+       if (j<-100) {setTimeout(step,10);i=-100;}
+       
+    }
+    step();
+}
+MoveLeft3()
